@@ -571,6 +571,9 @@ int flb_input_chunk_destroy(struct flb_input_chunk *ic, int del)
 
         if (flb_routes_mask_get_bit(ic->routes_mask, o_ins->id) != 0) {
             o_ins->fs_chunks_size -= bytes;
+            flb_debug("[input chunk] remove chunk %s with %ld bytes from plugin %s, "
+                      "the updated fs_chunks_size is %ld bytes", flb_input_chunk_get_name(ic),
+                      bytes, o_ins->name, o_ins->fs_chunks_size);
         }
     }
 
